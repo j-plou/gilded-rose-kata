@@ -12,9 +12,9 @@ class GildedRoseTest {
     void test() {
         CombinationApprovals.verifyAllCombinations(
             this::doUpdateQuality,
-            new String[]{"anyItem"},
-            range(-1, 5),
-            range(-1, 5)
+            new String[]{"anyItem", "Aged Brie", "Sulfuras, Hand of Ragnaros", "Backstage passes to a TAFKAL80ETC concert", },
+            range(-1, 15),
+            range(-1, 50)
         );
     }
 
