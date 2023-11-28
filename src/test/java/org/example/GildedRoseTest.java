@@ -1,5 +1,6 @@
 package org.example;
 
+import org.approvaltests.combinations.CombinationApprovals;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -7,12 +8,19 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 class GildedRoseTest {
     @Test
     void test() {
-        final Item item = new Item("foo", 5, 5);
+        CombinationApprovals.verifyAllCombinations(
+            this::doUpdateQuality,
+            new String[]{"anyItem"},
+            new Integer[]{5},
+            new Integer[]{5}
+        );
+    }
+
+    private Item doUpdateQuality(String name, Integer sellIn, Integer quality) {
+        final Item item = new Item(name, sellIn, quality);
         final GildedRose gildedRose = new GildedRose(new Item[]{item});
 
         gildedRose.updateQuality();
-
-        assertThat(item.quality).isEqualTo(4);
-        assertThat(item.sellIn).isEqualTo(4);
+        return item;
     }
 }
