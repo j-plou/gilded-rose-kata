@@ -3,6 +3,8 @@ package org.example;
 import org.approvaltests.combinations.CombinationApprovals;
 import org.junit.jupiter.api.Test;
 
+import java.util.stream.IntStream;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class GildedRoseTest {
@@ -11,8 +13,8 @@ class GildedRoseTest {
         CombinationApprovals.verifyAllCombinations(
             this::doUpdateQuality,
             new String[]{"anyItem"},
-            new Integer[]{5},
-            new Integer[]{5}
+            range(-1, 5),
+            range(-1, 5)
         );
     }
 
@@ -22,5 +24,9 @@ class GildedRoseTest {
 
         gildedRose.updateQuality();
         return item;
+    }
+
+    private Integer[] range(int min, int max) {
+        return IntStream.range(min, max).boxed().toArray(Integer[]::new);
     }
 }
