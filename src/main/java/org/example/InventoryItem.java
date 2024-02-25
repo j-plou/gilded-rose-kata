@@ -13,29 +13,33 @@ public final class InventoryItem {
         if (item.name.equals("Aged Brie")) {
             increaseQuality();
             decreaseSellIn();
-            if (item.sellIn < 0) {
+            if (sellIsLessThan(0)) {
                 increaseQuality();
             }
         } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
             increaseQuality();
-            if (item.sellIn < 11) {
+            if (sellIsLessThan(11)) {
                 increaseQuality();
             }
-            if (item.sellIn < 6) {
+            if (sellIsLessThan(6)) {
                 increaseQuality();
             }
             decreaseSellIn();
-            if (item.sellIn < 0) {
+            if (sellIsLessThan(0)) {
                 dropQualityToZero();
             }
         } else if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
         } else {
             decreaseQuality();
             decreaseSellIn();
-            if (item.sellIn < 0) {
+            if (sellIsLessThan(0)) {
                 decreaseQuality();
             }
         }
+    }
+
+    private boolean sellIsLessThan(int amount) {
+        return item.sellIn < amount;
     }
 
     private void decreaseSellIn() {
